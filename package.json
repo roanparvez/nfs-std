@@ -7,8 +7,17 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "prettier": "prettier --write .",
-    "prettier:check": "prettier --check ."
+    "lint:fix": "eslint --fix",
+    "prettier": "prettier --write . --ignore-unknown",
+    "prettier:check": "prettier --check . --ignore-unknown",
+    "prepare": "husky install",
+    "ci": "npm run lint && npm run prettier:check"
+  },
+  "lint-staged": {
+    "*.{js,jsx,ts,tsx,json,css,md,yml,yaml,scss}": [
+      "npm run lint:fix",
+      "npm run prettier"
+    ]
   },
   "dependencies": {
     "next": "15.3.3",
@@ -24,6 +33,8 @@
     "eslint": "^9",
     "eslint-config-next": "15.3.3",
     "eslint-config-prettier": "^10.1.5",
+    "husky": "^9.1.7",
+    "lint-staged": "^16.1.0",
     "prettier": "3.5.3",
     "tailwindcss": "^4",
     "typescript": "^5"
